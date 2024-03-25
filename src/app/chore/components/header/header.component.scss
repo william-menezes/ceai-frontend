@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  .p-toolbar {
+  padding: 10px;
+  border-radius: 0;
+}
+
+  .p-avatar {
+    cursor: pointer;
+    margin-left: 16px;
+  }
+}
