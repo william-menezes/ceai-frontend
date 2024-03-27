@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChoreModule } from './chore/chore.module';
+import { CoreModule } from './core/core.module';
 import { PrimengModule } from './primeng/primeng.module';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { PrimengModule } from './primeng/primeng.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ChoreModule,
+    CoreModule,
     PrimengModule
   ],
   providers: [],
