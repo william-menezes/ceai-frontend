@@ -1,0 +1,10 @@
+:host {
+  .w-100 {
+    width: 100%;
+  }
+
+  .w-90 {
+    width: calc(100% - 320px) !important;
+    margin-left: auto !important;
+  }
+}

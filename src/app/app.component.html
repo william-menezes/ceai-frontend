@@ -1,1 +1,11 @@
-<app-header></app-header>
+<div class="dashboard">
+  <!-- <div class="header" [ngClass]="sidebarVisible == true ? 'w-90' : 'w-100'"> -->
+  <div class="header">
+    <app-header [sidebarStatus]="sidebarVisible" (toggleSidebarEmitter)="toggleSidebar($event)"></app-header>
+  </div>
+
+  <div class="sidebar">
+    <app-sidebar [sidebarVisible]="sidebarVisible" (sidebarEmitter)="toggleSidebar($event)"></app-sidebar>
+  </div>
+</div>
+

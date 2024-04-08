@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../../../primeng/services/theme.service';
 
@@ -10,6 +10,8 @@ import { ThemeService } from '../../../primeng/services/theme.service';
 export class HeaderComponent implements OnInit {
   theme: boolean = true;
   items: MenuItem[] | undefined;
+  @Input() sidebarStatus: boolean = false;
+  @Output() toggleSidebarEmitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private themeService: ThemeService) {}
 
@@ -28,5 +30,10 @@ export class HeaderComponent implements OnInit {
     } else {
       this.themeService.switchTheme('lara-dark-blue');
     }
+  }
+
+  toggleSidebar() {
+    this.sidebarStatus = !this.sidebarStatus;
+    this.toggleSidebarEmitter.emit(this.sidebarStatus);
   }
 }

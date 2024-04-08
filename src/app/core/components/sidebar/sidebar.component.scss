@@ -1,0 +1,20 @@
+:host ::ng-deep {
+  .p-sidebar-header {
+    height: 70px;
+
+    .sidebar__header {
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar__logo {
+      height: 40px;
+      margin-right: 16px;
+    }
+
+    .sidebar__brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+}
