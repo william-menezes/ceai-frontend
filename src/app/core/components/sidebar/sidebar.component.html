@@ -15,6 +15,34 @@
     </div>
   </ng-template>
   <ng-template pTemplate="content">
+    <ul class="sidebar__navigation list-none">
+      @for (item of items; track item.label) {
+        <li class="navigation__item">
+          <a class="text-decoration-none">
+            <i class="{{item.icon}}" style="font-size: 1.5rem"></i>
+            <span class="">
+              {{item.label}}
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
   </ng-template>
-  <ng-template pTemplate="footer">Footer Content</ng-template>
+  <ng-template pTemplate="footer">
+    <div class="user">
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+        shape="circle"
+        class="user__picture"
+      ></p-avatar>
+
+      <div class="user__info">
+        <h6 class="user__name">User name</h6>
+        <p class="user__position">User position</p>
+      </div>
+
+      <i class="pi pi-sign-out"></i>
+
+    </div>
+  </ng-template>
 </p-sidebar>

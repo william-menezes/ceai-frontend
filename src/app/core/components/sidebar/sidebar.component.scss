@@ -1,6 +1,7 @@
 :host ::ng-deep {
   .p-sidebar-header {
     height: 70px;
+    padding: 32px 24px 0;
 
     .sidebar__header {
       display: flex;
@@ -8,13 +9,68 @@
     }
 
     .sidebar__logo {
-      height: 40px;
-      margin-right: 16px;
+      height: 32px;
+      margin-right: 8px;
     }
 
     .sidebar__brand {
-      font-size: 24px;
+      font-size: 18px;
       font-weight: bold;
     }
+  }
+
+  .p-sidebar-content {
+    //padding: 24px 32px;
+
+    .navigation__item {
+      width: 100%;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+
+      a {
+        display: flex;
+        align-items: center;
+      }
+
+      i {
+        margin-right: 12px;
+      }
+
+      span {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      &--active {
+        background-color: var(--gray-50);
+      }
+    }
+  }
+  .p-sidebar-footer {
+    padding: 0 24px 32px;
+
+    .user {
+      display: flex;
+      align-items: center;
+
+      .user__picture {
+        margin-right: 12px;
+      }
+
+      .user__info {
+        .user__name,
+        .user__position {
+          margin: 0;
+          font-size: 14px;
+        }
+      }
+
+      i {
+        margin-left: auto;
+      }
+    }
+
   }
 }
