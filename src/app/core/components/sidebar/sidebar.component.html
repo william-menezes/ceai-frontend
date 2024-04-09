@@ -1,7 +1,7 @@
 <p-sidebar
   [(visible)]="sidebarVisible"
   [showCloseIcon]="false"
-  [modal]="true"
+  [modal]="width < 1000"
   (onHide)="onHide($event)"
 >
   <ng-template pTemplate="header">

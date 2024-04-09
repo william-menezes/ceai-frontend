@@ -12,4 +12,8 @@ export class AppComponent {
   toggleSidebar(sidebarStatus: boolean) {
     this.sidebarVisible = sidebarStatus;
   }
+
+  public get width() {
+    return window.innerWidth;
+  }
 }

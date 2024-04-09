@@ -41,4 +41,8 @@ export class SidebarComponent implements OnInit {
   onHide($event: any) {
     this.sidebarEmitter.emit(false);
   }
+
+  public get width() {
+    return window.innerWidth;
+  }
 }
