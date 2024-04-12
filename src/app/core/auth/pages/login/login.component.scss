@@ -1,0 +1,71 @@
+:host {
+  .container {
+    width: 320px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 0 48px 0;
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 80px;
+
+      @media screen and (max-width: 1024px) {
+        margin-bottom: 24px;
+      }
+
+      .logo__img {
+        height: 32px;
+        margin-right: 8px;
+      }
+
+      .logo__brand {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+    &__header {
+      .header__title {
+        font-size: 2.25rem;
+        margin: 0 0 12px 0;
+
+        @media screen and (max-width: 1024px) {
+          font-size: 1.5rem;
+        }
+      }
+      .header__subtitle {
+        font-size: 1rem;
+        margin: 0 0 32px 0;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      a {
+        text-align: end;
+      }
+
+      ::ng-deep {
+        .p-button,
+        .p-password,
+        input {
+          width: 100%;
+        }
+      }
+    }
+
+    &__footer {
+      margin-top: 32px;
+
+      p {
+        margin: 0;
+        text-align: center;
+      }
+    }
+  }
+}

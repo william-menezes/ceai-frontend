@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container">
+  <div class="container__logo">
+    <img src="assets/logo/logo.svg" class="logo__img" alt="Logo CEAI App" />
+    <span class="logo__brand">CEAI Laranjeiras</span>
+  </div>
+
+  <div class="container__header">
+    <h2 class="header__title">Entrar</h2>
+    <p class="header__subtitle">
+      Bem-vindo de volta! Digite seus dados para entrar.
+    </p>
+  </div>
+
+  <form class="container__content">
+    <div class="form-field">
+      <label for="username">Usuário</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+      <!-- <small id="username-help" class="hint-error"
+        >Enter your username to reset your password.</small
+      > -->
+    </div>
+
+    <div class="form-field">
+      <label for="password">Senha</label>
+      <p-password [feedback]="false" [toggleMask]="true"></p-password>
+    </div>
+
+    <a class="link" routerLink="">Esqueci minha senha</a>
+
+    <p-button label="Entrar"></p-button>
+
+    <p-button
+      label="Entrar com Google"
+      icon="pi pi-google"
+      [outlined]="true"
+    ></p-button>
+  </form>
+  <div class="container__footer">
+    <p>Não tem uma contra? <a class="link" routerLink="../register">Cadastre-se</a></p>
+  </div>
+</div>
