@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  height: 100vh;
+
+  .form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  .img-wrapper {
+    background-image: url("../../../assets/img/elderlycouple.jpg");
+    background-size: cover;
+    background-position: 75% center;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+}
