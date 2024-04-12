@@ -1,1 +1,46 @@
-<p>register works!</p>
+<div class="container">
+  <div class="container__logo">
+    <img src="assets/logo/logo.svg" class="logo__img" alt="Logo CEAI App" />
+    <span class="logo__brand">CEAI Laranjeiras</span>
+  </div>
+
+  <div class="container__header">
+    <h2 class="header__title">Cadastrar</h2>
+    <p class="header__subtitle">Digite seus dados para cadastrar.</p>
+  </div>
+
+  <form class="container__content">
+    <div class="form-field">
+      <label for="username">Nome</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+    </div>
+
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input pInputText id="email" />
+    </div>
+
+    <div class="form-field">
+      <label for="password">Senha</label>
+      <p-password [feedback]="false" [toggleMask]="true"></p-password>
+    </div>
+
+    <div class="form-field">
+      <label for="password">Repetir senha</label>
+      <p-password [feedback]="false" [toggleMask]="true"></p-password>
+    </div>
+
+    <p-button label="Cadastrar"></p-button>
+
+    <p-button
+      label="Cadastrar com Google"
+      icon="pi pi-google"
+      [outlined]="true"
+    ></p-button>
+  </form>
+  <div class="container__footer">
+    <p>
+      Já tem uma contra? <a class="link" routerLink="../login">Faça login</a>
+    </p>
+  </div>
+</div>
