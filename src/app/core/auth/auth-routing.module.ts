@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { LoginComponent } from './pages/login/login.component';
+import { NewPasswordComponent } from './pages/new-password/new-password.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: 'criar-conta', component: RegisterComponent },
       { path: 'entrar', component: LoginComponent },
-      { path: 'esqueci-minha-senha', component: ForgotPasswordComponent}
+      { path: 'esqueci-minha-senha', component: ForgotPasswordComponent },
+      { path: 'nova-senha', component: NewPasswordComponent },
     ],
   },
 ];
