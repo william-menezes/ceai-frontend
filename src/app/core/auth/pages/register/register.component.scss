@@ -1,7 +1,7 @@
 :host {
   .container {
     width: 320px;
-   // height: 100vh;
+    // height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,6 +15,11 @@
       display: flex;
       align-items: center;
       margin-bottom: 80px;
+      text-decoration: none;
+
+      &:visited {
+        color: inherit;
+      }
 
       @media screen and (max-width: 1024px) {
         margin-bottom: 24px;

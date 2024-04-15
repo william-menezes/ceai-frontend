@@ -8,7 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     redirectTo: 'auth/entrar',
     pathMatch: 'full',
   },
@@ -21,6 +21,10 @@ const routes: Routes = [
       { path: 'esqueci-minha-senha', component: ForgotPasswordComponent },
       { path: 'nova-senha', component: NewPasswordComponent },
     ],
+  },
+  {
+    path: '**',
+    redirectTo: 'auth/entrar',
   },
 ];
 
