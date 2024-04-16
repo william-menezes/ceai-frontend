@@ -1,0 +1,23 @@
+<div class="dashboard">
+  <div
+    class="header"
+    [ngClass]="sidebarVisible && width > 1000 ? 'w-90' : 'w-100'"
+  >
+    <app-header
+      [sidebarStatus]="sidebarVisible"
+      (toggleSidebarEmitter)="toggleSidebar($event)"
+    ></app-header>
+
+    <div class="dashboard__content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <app-sidebar
+      [sidebarVisible]="sidebarVisible"
+      (sidebarEmitter)="toggleSidebar($event)"
+    ></app-sidebar>
+  </div>
+</div>
+

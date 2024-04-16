@@ -6,14 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
-  sidebarVisible: boolean = true;
-
-  toggleSidebar(sidebarStatus: boolean) {
-    this.sidebarVisible = sidebarStatus;
-  }
-
-  public get width() {
-    return window.innerWidth;
-  }
 }

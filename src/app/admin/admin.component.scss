@@ -1,0 +1,16 @@
+:host {
+  .w-100 {
+    width: 100%;
+  }
+
+  .w-90 {
+    width: calc(100% - 280px) !important;
+    margin-left: auto !important;
+  }
+
+  .dashboard__content {
+    height: calc(100vh - 70px);
+    background-color: var(--surface-100);
+    padding: 32px;
+  }
+}

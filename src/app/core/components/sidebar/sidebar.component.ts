@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../../../primeng/services/theme.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,11 +14,11 @@ export class SidebarComponent implements OnInit {
   @Input() sidebarVisible: boolean = false;
   @Output() sidebarEmitter: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService, private router: Router) {}
 
   ngOnInit() {
     this.items = [
-      { label: 'Dashboard', icon: 'pi pi-home', routerLink: '' },
+      { label: 'Dashboard', icon: 'pi pi-home', routerLink: 'admin/dashboard' },
       { label: 'Alunos', icon: 'pi pi-users', routerLink: '' },
       { label: 'Funcionários', icon: 'pi pi-user', routerLink: '' },
       { label: 'Horários', icon: 'pi pi-clock', routerLink: '' },
@@ -36,6 +37,10 @@ export class SidebarComponent implements OnInit {
     } else {
       this.themeService.switchTheme('lara-dark-blue');
     }
+  }
+
+  logout() {
+    this.router.navigate(['auth/entrar']);
   }
 
   onHide($event: any) {

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../../../primeng/services/theme.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +14,12 @@ export class HeaderComponent implements OnInit {
   @Input() sidebarStatus: boolean = false;
   @Output() toggleSidebarEmitter: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService, private router: Router) {}
 
   ngOnInit() {
     this.items = [
       { label: 'Configurações', icon: 'pi pi-cog' },
-      { label: 'Sair', icon: 'pi pi-sign-out' },
+      { label: 'Sair', icon: 'pi pi-sign-out', command: () => {this.logout()} },
     ];
   }
 
@@ -35,5 +36,9 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     this.sidebarStatus = !this.sidebarStatus;
     this.toggleSidebarEmitter.emit(this.sidebarStatus);
+  }
+
+  logout() {
+    this.router.navigate(['auth/entrar']);
   }
 }
