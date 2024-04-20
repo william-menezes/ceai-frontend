@@ -9,8 +9,10 @@
   }
 
   .dashboard__content {
+    width: 100%;
     height: calc(100vh - 70px);
     background-color: var(--surface-100);
     padding: 32px;
+    overflow-y: scroll;
   }
 }

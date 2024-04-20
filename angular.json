@@ -39,12 +39,12 @@
             "styles": [
               "src/styles.scss",
               {
-                "input": "src/app/primeng/themes/theme-lara-light-blue.scss",
+                "input": "src/assets/themes/theme-lara-light-blue.scss",
                 "bundleName": "lara-light-blue",
                 "inject": false
               },
               {
-                "input": "src/app/primeng/themes/theme-lara-dark-blue.scss",
+                "input": "src/assets/themes/theme-lara-dark-blue.scss",
                 "bundleName": "lara-dark-blue",
                 "inject": false
               }

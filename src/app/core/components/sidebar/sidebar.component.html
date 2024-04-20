@@ -11,14 +11,14 @@
         class="sidebar__logo"
         alt="Logo CEAI App"
       />
-      <span class="sidebar__brand">CEAI Laranjeiras</span>
+      <span class="sidebar__brand">CEAI Rondon</span>
     </div>
   </ng-template>
   <ng-template pTemplate="content">
     <ul class="sidebar__navigation list-none">
       @for (item of items; track item.label) {
-        <li class="navigation__item">
-          <a class="text-decoration-none">
+        <li class="navigation__item" >
+          <a class="text-decoration-none" >
             <i class="{{item.icon}}" style="font-size: 1.5rem"></i>
             <span class="">
               {{item.label}}
