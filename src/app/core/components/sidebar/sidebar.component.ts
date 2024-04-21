@@ -18,14 +18,14 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Dashboard', icon: 'pi pi-home', routerLink: 'admin/dashboard' },
-      { label: 'Alunos', icon: 'pi pi-users', routerLink: '' },
-      { label: 'Funcionários', icon: 'pi pi-user', routerLink: '' },
-      { label: 'Horários', icon: 'pi pi-clock', routerLink: '' },
-      { label: 'Atividades', icon: 'pi pi-th-large', routerLink: '' },
-      { label: 'Turmas', icon: 'pi pi-calendar', routerLink: '' },
-      { label: 'Salas', icon: 'pi pi-building', routerLink: '' },
-      { label: 'Atestados', icon: 'pi pi-file', routerLink: '' },
+      { label: 'Dashboard', icon: 'pi pi-home', routerLink: './dashboard' },
+      { label: 'Alunos', icon: 'pi pi-users', routerLink: './alunos'},
+      { label: 'Funcionários', icon: 'pi pi-user', routerLink: './funcionarios' },
+      { label: 'Horários', icon: 'pi pi-clock', routerLink: '#' },
+      { label: 'Atividades', icon: 'pi pi-th-large', routerLink: '#' },
+      { label: 'Turmas', icon: 'pi pi-calendar', routerLink: '#' },
+      { label: 'Salas', icon: 'pi pi-building', routerLink: '#' },
+      { label: 'Atestados', icon: 'pi pi-file', routerLink: '#' },
     ];
   }
 

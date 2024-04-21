@@ -17,8 +17,8 @@
   <ng-template pTemplate="content">
     <ul class="sidebar__navigation list-none">
       @for (item of items; track item.label) {
-        <li class="navigation__item" >
-          <a class="text-decoration-none" >
+        <li class="navigation__item" routerLinkActive="navigation__item--active">
+          <a class="text-decoration-none" [routerLink]="item.routerLink" >
             <i class="{{item.icon}}" style="font-size: 1.5rem"></i>
             <span class="">
               {{item.label}}
