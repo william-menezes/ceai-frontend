@@ -10,8 +10,19 @@
     border: 1px solid blue;
   }*/
 
-  ::ng-deep .p-card {
-    /* max-width: 360px; */
-    /* height: 369px; */
+  ::ng-deep {
+    .p-card {
+    }
+
+    .p-card-title {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .p-card-content {
+      font-size: 1.875rem;
+      font-weight: 600;
+    }
+
   }
 }
