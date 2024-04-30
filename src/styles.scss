@@ -40,3 +40,42 @@ body {
   font-weight: 600;
   text-decoration: none;
 }
+
+.pill {
+  border-radius: 16px;
+  padding: 4px 10px;
+  font-size: 0.875rem;
+
+  &--success {
+    background-color: var(--green-50);
+    border: 1px solid var(--green-200);
+    color: var(--green-700);
+    font-weight: bold;
+
+    i {
+      color: var(--green-500);
+    }
+  }
+
+  &--danger {
+    background-color: var(--red-50);
+    border: 1px solid var(--red-200);
+    color: var(--red-700);
+    font-weight: bold;
+
+    i {
+      color: var(--red-500) !important;
+    }
+  }
+
+  &--success {
+    background-color: var(--green-50);
+    border: 1px solid var(--green-200);
+    color: var(--green-700);
+    font-weight: bold;
+
+    i {
+      color: var(--green-500);
+    }
+  }
+}
