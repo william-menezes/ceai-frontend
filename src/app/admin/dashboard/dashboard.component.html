@@ -45,6 +45,7 @@
       <p-chart type="bar" [data]="data" [options]="data.options"></p-chart>
     </p-card>
   </div>
+
   <div class="col-12 md:col-3">
     <p-card header="Alunos por sexo" [style]="{ height: '268px' }">
       <p-chart
@@ -53,6 +54,17 @@
         [options]="userBySexData.options"
         [responsive]="true"
         height="180"
+      ></p-chart>
+    </p-card>
+  </div>
+
+  <div class="col-12">
+    <p-card header="Quantidade de alunos" [style]="{ height: '268px' }">
+      <p-chart
+        type="line"
+        [data]="studentsData"
+        [options]="studentsData.options"
+        [responsive]="true"
       ></p-chart>
     </p-card>
   </div>
