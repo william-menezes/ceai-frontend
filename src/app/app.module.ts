@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PrimengModule } from './primeng/primeng.module';
 import { ThemeService } from './core/services/theme.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ThemeService } from './core/services/theme.service';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     CoreModule,
     PrimengModule
   ],
