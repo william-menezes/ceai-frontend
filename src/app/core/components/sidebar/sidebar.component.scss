@@ -21,7 +21,7 @@
     .sidebar__brand {
       font-size: 18px;
       font-weight: bold;
-      color: var(--gray-900)
+      color: var(--surface-900)
     }
   }
 
@@ -87,7 +87,8 @@
       }
 
       &:hover {
-        background-color: var(--surface-100);
+        background-color: var(--highlight-bg);
+        color: var(--highlight-text-color);
       }
     }
   }
