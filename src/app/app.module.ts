@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { PrimengModule } from './primeng/primeng.module';
 import { ThemeService } from './core/services/theme.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

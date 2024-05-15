@@ -1,0 +1,15 @@
+:host {
+  ::ng-deep {
+    .p-panel-header {
+      background-color: var(--surface-card);
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .p-datatable-header {
+      background-color: var(--surface-card);
+      border-top: none;
+      padding-right: 0;
+    }
+  }
+}

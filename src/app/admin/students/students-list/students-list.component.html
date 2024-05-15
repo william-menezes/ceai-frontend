@@ -1,34 +1,97 @@
-<p-card header="Alunos">
-  <div class="flex flex-column align-items-end gap-3">
-    <p-button icon="pi pi-plus" label="Novo aluno"></p-button>
+<p-panel [toggleable]="false">
+  <ng-template pTemplate="header">
+    <div class="flex justify-content-between align-items-center w-100">
+      <h2>Alunos</h2>
+      <p-button
+        icon="pi pi-plus"
+        label="Novo aluno"
+        class="p-card-title"
+      ></p-button>
+    </div>
+  </ng-template>
 
-    <p-table
-      [value]="students"
-      [tableStyle]="{ 'min-width': '50rem' }"
-      [paginator]="true"
-      [rows]="20"
-      [rowsPerPageOptions]="[5, 10, 20]"
-      class="w-100"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th pSortableColumn="nome">Nome <p-sortIcon field="nome" /></th>
-          <th pSortableColumn="sexo">Sexo <p-sortIcon field="sexo" /></th>
-          <th pSortableColumn="dataNascimento">
-            Data de nascimento <p-sortIcon field="dataNascimento" />
-          </th>
-          <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
-        </tr>
-      </ng-template>
+  <p-table
+    #table
+    [value]="students"
+    dataKey="id"
+    [rows]="10"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [loading]="loading"
+    selectionMode="single"
+    [paginator]="true"
+    [tableStyle]="{ 'min-width': '110rem' }"
+    class="w-100"
+    sortMode="multiple"
+    [multiSortMeta]="[
+      { field: 'status', order: 1 },
+      { field: 'nome', order: 1 }
+    ]"
+    [globalFilterFields]="['nome', 'sexo', 'status', 'cpf']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <p-iconField iconPosition="left" class="ml-auto">
+          <p-inputIcon>
+            <i class="pi pi-search"></i>
+          </p-inputIcon>
+          <input
+            pInputText
+            type="text"
+            (input)="table.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Pesquisar"
+          />
+        </p-iconField>
+      </div>
+    </ng-template>
 
-      <ng-template pTemplate="body" let-student>
-        <tr>
-          <td>{{ student.nome }}</td>
-          <td>{{ student.sexo }}</td>
-          <td>{{ student.dataNascimento }}</td>
-          <td>{{ student.status }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-</p-card>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th pSortableColumn="nome">Nome</th>
+        <th pSortableColumn="sexo">Sexo</th>
+        <th pSortableColumn="dataNascimento">Data de nascimento</th>
+        <th pSortableColumn="status">Status</th>
+        <th pSortableColumn="rg">RG</th>
+        <th pSortableColumn="cpf">CPF</th>
+        <th pSortableColumn="nomeMae">Mãe</th>
+        <th pSortableColumn="naturalidade">Naturalidade</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-student let-columns="columns">
+      <tr [pSelectableRow]="student">
+        <td><span class="p-column-title">Nome</span>{{ student.nome }}</td>
+        <td><span class="p-column-title">Sexo</span>{{ student.sexo }}</td>
+        <td>
+          <span class="p-column-title">Data de nascimento</span
+          >{{ student.dataNascimento }}
+        </td>
+        <td>
+          <span class="p-column-title">Status</span
+          ><p-tag
+            [value]="student.status"
+            [severity]="getSeverity(student.status)"
+          ></p-tag>
+        </td>
+        <td><span class="p-column-title">RG</span>{{ student.rg }}</td>
+        <td><span class="p-column-title">CPF</span>{{ student.cpf }}</td>
+        <td><span class="p-column-title">Mãe</span>{{ student.nomeMae }}</td>
+        <td>
+          <span class="p-column-title">Naturalidade</span
+          >{{ student.naturalidade }}
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+          In total there are {{ students ? students.length : 0 }} products.
+      </div>
+  </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td colspan="8">Nenhum dado encontrado.</td>
+      </tr>
+  </ng-template>
+  </p-table>
+</p-panel>
