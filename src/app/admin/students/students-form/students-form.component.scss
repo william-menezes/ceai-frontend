@@ -6,17 +6,14 @@
       padding-bottom: 0;
     }
 
-    .p-datatable-header {
-      background-color: var(--surface-card);
-      border-top: none;
-      padding-top: 0;
-      padding-right: 0;
-    }
-
     .p-toolbar {
       background-color: var(--surface-100);
       border: none;
       padding: 0;
+    }
+
+    .p-calendar, .p-dropdown, .p-inputmask {
+      width: 100%;
     }
   }
 }

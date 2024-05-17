@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Column } from '../../../core/models/column';
 import { Student } from '../../../core/models/student';
 import { StudentService } from '../../../core/services/student.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-students-list',
@@ -14,7 +15,11 @@ export class StudentsListComponent {
   statuses!: any[];
   loading: boolean = true;
 
-  constructor(private studentService: StudentService) {}
+  constructor(
+    private studentService: StudentService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.studentService.getStudents().subscribe((students) => {
@@ -40,7 +45,7 @@ export class StudentsListComponent {
       { label: 'TRANSFERENCIA', value: 'TRANSFERENCIA' },
       { label: 'OBITO', value: 'OBITO' },
       { label: 'NAO RENOVOU', value: 'NAO RENOVOU' },
-    ]
+    ];
   }
 
   getSeverity(status: string) {
@@ -60,5 +65,9 @@ export class StudentsListComponent {
       default:
         return 'warning';
     }
+  }
+
+  newStudent() {
+    this.router.navigate(['novo-aluno'], { relativeTo: this.route });
   }
 }

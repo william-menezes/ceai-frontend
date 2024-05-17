@@ -1,14 +1,29 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <h2>Alunos</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-button
+      icon="pi pi-plus"
+      label="Novo aluno"
+      class="p-card-title"
+      (click)="newStudent()"
+    ></p-button>
+  </div>
+</p-toolbar>
+
 <p-panel [toggleable]="false">
-  <ng-template pTemplate="header">
+ <!--  <ng-template pTemplate="header">
     <div class="flex justify-content-between align-items-center w-100">
       <h2>Alunos</h2>
       <p-button
         icon="pi pi-plus"
         label="Novo aluno"
         class="p-card-title"
+        (click)="newStudent()"
       ></p-button>
     </div>
-  </ng-template>
+  </ng-template> -->
 
   <p-table
     #table
@@ -84,14 +99,14 @@
 
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-          In total there are {{ students ? students.length : 0 }} products.
+        Total de {{ students ? students.length : 0 }} alunos cadastrados.
       </div>
-  </ng-template>
+    </ng-template>
 
     <ng-template pTemplate="emptymessage">
       <tr>
-          <td colspan="8">Nenhum dado encontrado.</td>
+        <td colspan="8">Nenhum dado encontrado.</td>
       </tr>
-  </ng-template>
+    </ng-template>
   </p-table>
 </p-panel>

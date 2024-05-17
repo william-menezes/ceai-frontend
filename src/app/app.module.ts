@@ -8,7 +8,7 @@ import { CoreModule } from './core/core.module';
 import { PrimengModule } from './primeng/primeng.module';
 import { ThemeService } from './core/services/theme.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     CoreModule,
     PrimengModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

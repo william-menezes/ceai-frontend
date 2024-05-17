@@ -1,0 +1,161 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start flex flex-column align-items-start">
+    <p-button
+      label="Voltar"
+      icon="pi pi-arrow-left"
+      [text]="true"
+      (onClick)="voltar()"
+    />
+
+    <h2>Novo aluno</h2>
+  </div>
+</p-toolbar>
+
+<p-panel [toggleable]="false">
+  <form [formGroup]="studentForm" #form="ngForm" (ngsubmit)="onSubmit()">
+    <p-tabView>
+      <p-tabPanel header="Informações pessoais">
+        <div class="formgrid grid row-gap-5">
+          <div class="col-12 md:col-8 form-field">
+            <label for="nome">Nome</label>
+            <input
+              pInputText
+              id="nome"
+              formControlName="nome"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+
+          <div class="col-12 md:col-2 form-field">
+            <label for="sexo">Sexo</label>
+            <p-dropdown
+              formControlName="sexo"
+              [options]="sexOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Selecione um sexo"
+            />
+          </div>
+
+          <div class="col-12 md:col-2 form-field">
+            <label for="dataNascimento">Nascimento</label>
+            <p-calendar
+              formControlName="dataNascimento"
+              dateFormat="dd/mm/yy"
+            />
+          </div>
+
+          <div class="col-12 md:col-3 form-field">
+            <label for="rg">RG</label>
+            <input
+              pInputText
+              formControlName="rg"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+
+          <div class="col-12 md:col-3 form-field">
+            <label for="orgaoExpedidor">Órgão expedidor</label>
+            <input
+              pInputText
+              formControlName="orgaoExpedidor"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+
+          <div class="col-12 md:col-3 form-field">
+            <label for="dataExpedicao">Expedição</label>
+            <p-calendar formControlName="dataExpedicao" dateFormat="dd/mm/yy" />
+          </div>
+
+          <div class="col-12 md:col-3 form-field">
+            <label for="cpf">CPF</label>
+            <p-inputMask
+              formControlName="cpf"
+              mask="999.999.999-99"
+              placeholder="000.000.000-00"
+              maxlength="14"
+            />
+          </div>
+
+          <div class="col-12 md:col-6 form-field">
+            <label for="nomeMae">Mãe</label>
+            <input
+              pInputText
+              formControlName="nomeMae"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+
+          <div class="col-12 md:col-6 form-field">
+            <label for="naturalidade">Naturalidade</label>
+            <input
+              pInputText
+              formControlName="naturalidade"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="Endereço">
+        <div class="formgrid grid row-gap-5">
+          <div class="col-12 md:col-2 form-field">
+            <label for="cep">CEP</label>
+            <p-inputMask
+              formControlName="cep"
+              mask="99999-999"
+              placeholder="00000-000"
+              maxlength="9"
+            />
+          </div>
+
+          <div class="col-12 md:col-8 form-field">
+            <label for="endereco">Endereco</label>
+            <input
+              pInputText
+              id="endereco"
+              formControlName="endereco"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+
+          <div class="col-12 md:col-2 form-field">
+            <label for="numero">Nº</label>
+            <input
+              pInputText
+              pKeyFilter="num"
+              id="numero"
+              formControlName="numero"
+            />
+          </div>
+
+          <div class="col-12 md:col-6 form-field">
+            <label for="bairro">Bairro</label>
+            <p-dropdown
+              formControlName="bairro"
+              [options]="bairrosOptions"
+              optionLabel="bairro"
+              optionValue="bairro"
+              placeholder="Selecione um bairro"
+            />
+          </div>
+
+          <div class="col-12 md:col-6 form-field">
+            <label for="complemento">Complemento</label>
+            <input
+              pInputText
+              id="complemento"
+              formControlName="complemento"
+              oninput="this.value = this.value.toUpperCase()"
+            />
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="Contato de emergência"></p-tabPanel>
+    </p-tabView>
+  </form>
+
+  <p-button label="Salvar" (click)="onSubmit()"></p-button>
+</p-panel>

@@ -40,6 +40,7 @@ import { PasswordModule } from 'primeng/password';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
@@ -95,6 +96,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
     ProgressSpinnerModule,
     RadioButtonModule,
     ScrollPanelModule,
+    SelectButtonModule,
     SidebarModule,
     SkeletonModule,
     TableModule,
