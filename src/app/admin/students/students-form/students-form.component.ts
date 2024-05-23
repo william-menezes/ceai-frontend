@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -64,6 +64,10 @@ export class StudentsFormComponent implements OnInit {
     copiaCpf: [''],
     copiaEndereco: [''],
     copiaVacina: [''],
+    //refazer com formArray
+    tipoContato: [''],
+    responsavel: [''],
+    contatos: this.formBuilder.array([])
   });
 
   sexOptions: any[] = [
@@ -370,6 +374,21 @@ export class StudentsFormComponent implements OnInit {
     },
   ];
 
+  parentescoContatoOptions: any[] = [
+    { id: 0, value: 'Pessoal' },
+    { id: 1, value: 'Cônjuge' },
+    { id: 2, value: 'Filho(a)' },
+    { id: 3, value: 'Pai' },
+    { id: 4, value: 'Mãe' },
+    { id: 5, value: 'Irmã(o)' },
+    { id: 6, value: 'Primo(a)' },
+    { id: 7, value: 'Tio(a)' },
+    { id: 8, value: 'Sobrinho(a)' },
+    { id: 9, value: 'Neto(a)' },
+    { id: 10, value: 'Bisneto(a)' },
+    { id: 11, value: 'Vizinho(a)' },
+  ];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -384,5 +403,29 @@ export class StudentsFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.studentForm.value);
+  }
+
+  contatos(): FormArray {
+    return this.studentForm.get('contatos') as FormArray;
+  }
+
+  novoContato(): FormGroup {
+    return this.formBuilder.group({
+      contato: [''],
+      responsavel: [''],
+      parentesco: ['']
+    })
+  }
+
+  adicionarContato() {
+    this.contatos().push(this.novoContato());
+  }
+
+  removerContato(id: number) {
+    this.contatos().removeAt(id);
+  }
+
+  public get width() {
+    return window.innerWidth;
   }
 }

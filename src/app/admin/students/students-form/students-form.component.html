@@ -153,7 +153,83 @@
         </div>
       </p-tabPanel>
 
-      <p-tabPanel header="Contato de emergência"></p-tabPanel>
+      <p-tabPanel header="Contato">
+        <form formArrayName="contatos" class="flex flex-column flex-wrap gap-5">
+          <ng-container
+            *ngFor="let contato of contatos().controls; let contatoId = index"
+            [formGroupName]="contatoId"
+          >
+
+          <div class="formgrid grid row-gap-5" >
+            <div class="col-12 md:col-3 form-field">
+              <label for="contato">Telefone</label>
+              <p-inputMask
+                formControlName="contato"
+                mask="(99) ?9 9999-9999"
+                placeholder="(00) 0 0000-0000"
+                maxlength="16"
+              />
+            </div>
+
+            <div class="col-12 md:col-5 form-field">
+              <label for="responsavel">Responsável</label>
+              <input
+                pInputText
+                id="responsavel"
+                formControlName="responsavel"
+                oninput="this.value = this.value.toUpperCase()"
+              />
+            </div>
+
+            <div class="col-12 md:col-3 form-field">
+              <label for="parentesco">Parentesco</label>
+              <p-dropdown
+                formControlName="parentesco"
+                [options]="parentescoContatoOptions"
+                optionLabel="value"
+                optionValue="id"
+              />
+            </div>
+
+            <div class="col-12 md:col-1 flex align-items-end">
+              @if (width > 768) {
+              <p-button
+                icon="pi pi-trash"
+                [rounded]="true"
+                [text]="true"
+                severity="danger"
+                (click)="removerContato(contatoId)"
+              />
+              } @else {
+              <p-button
+                icon="pi pi-trash"
+                [outlined]="true"
+                severity="danger"
+                label="Remover telefone"
+                (click)="removerContato(contatoId)"
+              />
+              }
+            </div>
+
+          </div>
+        </ng-container>
+
+        <p-button
+        icon="pi pi-plus"
+        [outlined]="true"
+        severity="secondary"
+        size="small"
+        label="Adicionar telefone"
+        (click)="adicionarContato()"
+      />
+        </form>
+      </p-tabPanel>
+      <p-tabPanel header="Histórico">
+        <div class="formgrid grid row-gap-5"></div
+      ></p-tabPanel>
+      <p-tabPanel header="Grade horária">
+        <div class="formgrid grid row-gap-5"></div
+      ></p-tabPanel>
     </p-tabView>
   </form>
 
