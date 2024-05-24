@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StudentsListComponent {
   students!: Student[];
+  selectedStudent!: Student;
   cols!: Column[];
   statuses!: any[];
   loading: boolean = true;
@@ -69,5 +70,12 @@ export class StudentsListComponent {
 
   newStudent() {
     this.router.navigate(['novo-aluno'], { relativeTo: this.route });
+  }
+
+  selectStudent(id: any) {
+    this.studentService.getStudentById(id).subscribe((student) => {
+      //console.log('Service working');
+      console.log(student);
+    });
   }
 }

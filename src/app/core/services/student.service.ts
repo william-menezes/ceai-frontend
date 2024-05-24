@@ -14,11 +14,14 @@ export class StudentService {
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this._baseUrl).pipe(
       first(),
-      tap((students) => console.log(students))
+      //tap((students) => console.log(students))
     );
   }
 
   getStudentById(id: string): Observable<Student> {
-    return this.http.get<Student>(`${this._baseUrl}/${id}`);
+    return this.http.get<Student>(`${this._baseUrl}/${id}`).pipe(
+      first(),
+      //tap((student) => console.log(student))
+    );
   }
 }
