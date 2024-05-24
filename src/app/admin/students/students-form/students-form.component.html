@@ -31,9 +31,8 @@
             <p-dropdown
               formControlName="sexo"
               [options]="sexOptions"
-              optionLabel="label"
+              optionLabel="value"
               optionValue="value"
-              placeholder="Selecione um sexo"
             />
           </div>
 
@@ -73,7 +72,6 @@
             <p-inputMask
               formControlName="cpf"
               mask="999.999.999-99"
-              placeholder="000.000.000-00"
               maxlength="14"
             />
           </div>
@@ -105,13 +103,13 @@
             <p-inputMask
               formControlName="cep"
               mask="99999-999"
-              placeholder="00000-000"
               maxlength="9"
+              (focusout)="getAddress()"
             />
           </div>
 
           <div class="col-12 md:col-8 form-field">
-            <label for="endereco">Endereco</label>
+            <label for="endereco">Endereço</label>
             <input
               pInputText
               id="endereco"
@@ -134,10 +132,14 @@
             <label for="bairro">Bairro</label>
             <p-dropdown
               formControlName="bairro"
+              [editable]="true"
+              [showClear]="true"
+              [filter]="true"
+              filterBy="value"
               [options]="bairrosOptions"
-              optionLabel="bairro"
-              optionValue="bairro"
-              placeholder="Selecione um bairro"
+              optionLabel="value"
+              optionValue="id"
+              placeholder="Bairro"
             />
           </div>
 
@@ -162,11 +164,10 @@
 
           <div class="formgrid grid row-gap-5" >
             <div class="col-12 md:col-3 form-field">
-              <label for="contato">Telefone</label>
+              <label for="contato">Telefone {{contatoId+1}}</label>
               <p-inputMask
                 formControlName="contato"
                 mask="(99) ?9 9999-9999"
-                placeholder="(00) 0 0000-0000"
                 maxlength="16"
               />
             </div>
@@ -205,7 +206,7 @@
                 icon="pi pi-trash"
                 [outlined]="true"
                 severity="danger"
-                label="Remover telefone"
+                label="Remover contato"
                 (click)="removerContato(contatoId)"
               />
               }
@@ -219,14 +220,16 @@
         [outlined]="true"
         severity="secondary"
         size="small"
-        label="Adicionar telefone"
+        label="Adicionar contato"
         (click)="adicionarContato()"
       />
         </form>
       </p-tabPanel>
+
       <p-tabPanel header="Histórico">
         <div class="formgrid grid row-gap-5"></div
       ></p-tabPanel>
+
       <p-tabPanel header="Grade horária">
         <div class="formgrid grid row-gap-5"></div
       ></p-tabPanel>

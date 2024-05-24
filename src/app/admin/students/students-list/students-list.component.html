@@ -53,6 +53,7 @@
             pInputText
             type="text"
             (input)="table.filterGlobal($any($event.target).value, 'contains')"
+            oninput="this.value = this.value.toUpperCase()"
             placeholder="Pesquisar"
           />
         </p-iconField>

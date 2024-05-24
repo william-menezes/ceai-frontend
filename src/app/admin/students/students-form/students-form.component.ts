@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AddressService } from '../../../core/services/address.service';
+import { Address } from '../../../core/models/address';
 
 @Component({
   selector: 'app-students-form',
@@ -21,8 +23,9 @@ export class StudentsFormComponent implements OnInit {
     dataNascimento: [''],
     endereco: [''],
     numero: [''],
-    complemento: [''],
     bairro: [''],
+    complemento: [''],
+    value: [''],
     cep: [''],
     telefone1: [''],
     telefone2: [''],
@@ -67,332 +70,333 @@ export class StudentsFormComponent implements OnInit {
     //refazer com formArray
     tipoContato: [''],
     responsavel: [''],
-    contatos: this.formBuilder.array([])
+    contatos: this.formBuilder.array([]),
   });
 
   sexOptions: any[] = [
-    { label: 'Masculino', value: 'M' },
-    { label: 'Feminino', value: 'F' },
+    { id: 0, value: 'M' },
+    { id: 1, value: 'F' },
   ];
 
   bairrosOptions: any[] = [
     {
       id: '0',
-      bairro: 'ACLIMACAO',
+      value: 'ACLIMACAO',
     },
     {
       id: '1',
-      bairro: 'ALTO UMUARAMA',
+      value: 'ALTO UMUARAMA',
     },
     {
       id: '2',
-      bairro: 'ALVORADA',
+      value: 'ALVORADA',
     },
     {
       id: '3',
-      bairro: 'BOM JESUS',
+      value: 'BOM JESUS',
     },
     {
       id: '4',
-      bairro: 'BRASIL',
+      value: 'BRASIL',
     },
     {
       id: '5',
-      bairro: 'CARAJAS',
+      value: 'CARAJAS',
     },
     {
       id: '6',
-      bairro: 'CAZECA',
+      value: 'CAZECA',
     },
     {
       id: '7',
-      bairro: 'CENTRO',
+      value: 'CENTRO',
     },
     {
       id: '8',
-      bairro: 'CHACARAS TUBALINA E QUARTEL',
+      value: 'CHACARAS TUBALINA E QUARTEL',
     },
     {
       id: '9',
-      bairro: 'CIDADE JARDIM',
+      value: 'CIDADE JARDIM',
     },
     {
       id: '10',
-      bairro: 'CUSTODIO PEREIRA',
+      value: 'CUSTODIO PEREIRA',
     },
     {
       id: '11',
-      bairro: 'DANIEL FONSECA',
+      value: 'DANIEL FONSECA',
     },
     {
       id: '12',
-      bairro: 'DISTRITO INDUSTRIAL',
+      value: 'DISTRITO INDUSTRIAL',
     },
     {
       id: '13',
-      bairro: 'DONA ZULMIRA',
+      value: 'DONA ZULMIRA',
     },
     {
       id: '14',
-      bairro: 'FUNDINHO',
+      value: 'FUNDINHO',
     },
     {
       id: '15',
-      bairro: 'GAVEA',
+      value: 'GAVEA',
     },
     {
       id: '16',
-      bairro: 'GRANADA',
+      value: 'GRANADA',
     },
     {
       id: '17',
-      bairro: 'GRAND VILLE',
+      value: 'GRAND VILLE',
     },
     {
       id: '18',
-      bairro: 'GRANJA MARILEUSA',
+      value: 'GRANJA MARILEUSA',
     },
     {
       id: '19',
-      bairro: 'GUARANI',
+      value: 'GUARANI',
     },
     {
       id: '20',
-      bairro: 'JARAGUA',
+      value: 'JARAGUA',
     },
     {
       id: '21',
-      bairro: 'JARDIM BRASILIA',
+      value: 'JARDIM BRASILIA',
     },
     {
       id: '22',
-      bairro: 'JARDIM CANAA',
+      value: 'JARDIM CANAA',
     },
     {
       id: '23',
-      bairro: 'JARDIM DAS PALMEIRAS',
+      value: 'JARDIM DAS PALMEIRAS',
     },
     {
       id: '24',
-      bairro: 'JARDIM EUROPA',
+      value: 'JARDIM EUROPA',
     },
     {
       id: '25',
-      bairro: 'JARDIM HOLANDA',
+      value: 'JARDIM HOLANDA',
     },
     {
       id: '26',
-      bairro: 'JARDIM INCONFIDENCIA',
+      value: 'JARDIM INCONFIDENCIA',
     },
     {
       id: '27',
-      bairro: 'JARDIM IPANEMA',
+      value: 'JARDIM IPANEMA',
     },
     {
       id: '28',
-      bairro: 'JARDIM KARAIBA',
+      value: 'JARDIM KARAIBA',
     },
     {
       id: '29',
-      bairro: 'JARDIM PATRICIA',
+      value: 'JARDIM PATRICIA',
     },
     {
       id: '30',
-      bairro: 'JARDIM SUL',
+      value: 'JARDIM SUL',
     },
     {
       id: '31',
-      bairro: 'LAGOINHA',
+      value: 'LAGOINHA',
     },
     {
       id: '32',
-      bairro: 'LARANJEIRAS',
+      value: 'LARANJEIRAS',
     },
     {
       id: '33',
-      bairro: 'LIDICE',
+      value: 'LIDICE',
     },
     {
       id: '34',
-      bairro: 'LUIZOTE DE FREITAS',
+      value: 'LUIZOTE DE FREITAS',
     },
     {
       id: '35',
-      bairro: 'MANSOUR',
+      value: 'MANSOUR',
     },
     {
       id: '36',
-      bairro: 'MARAVILHA',
+      value: 'MARAVILHA',
     },
     {
       id: '37',
-      bairro: 'MARTA HELENA',
+      value: 'MARTA HELENA',
     },
     {
       id: '38',
-      bairro: 'MARTINS',
+      value: 'MARTINS',
     },
     {
       id: '39',
-      bairro: 'MINAS GERAIS',
+      value: 'MINAS GERAIS',
     },
     {
       id: '40',
-      bairro: 'MORADA DA COLINA',
+      value: 'MORADA DA COLINA',
     },
     {
       id: '41',
-      bairro: 'MORADA DO SOL',
+      value: 'MORADA DO SOL',
     },
     {
       id: '42',
-      bairro: 'MORADA DOS PASSAROS',
+      value: 'MORADA DOS PASSAROS',
     },
     {
       id: '43',
-      bairro: 'MORUMBI',
+      value: 'MORUMBI',
     },
     {
       id: '44',
-      bairro: 'NOSSA SENHORA APARECIDA',
+      value: 'NOSSA SENHORA APARECIDA',
     },
     {
       id: '45',
-      bairro: 'NOSSA SENHORA DAS GRACAS',
+      value: 'NOSSA SENHORA DAS GRACAS',
     },
     {
       id: '46',
-      bairro: 'NOVO MUNDO',
+      value: 'NOVO MUNDO',
     },
     {
       id: '47',
-      bairro: 'NOVA UBERLANDIA',
+      value: 'NOVA UBERLANDIA',
     },
     {
       id: '48',
-      bairro: 'OSVALDO REZENDE',
+      value: 'OSVALDO REZENDE',
     },
     {
       id: '49',
-      bairro: 'PACAEMBU',
+      value: 'PACAEMBU',
     },
     {
       id: '50',
-      bairro: 'PAMPULHA',
+      value: 'PAMPULHA',
     },
     {
       id: '51',
-      bairro: 'PANORAMA',
+      value: 'PANORAMA',
     },
     {
       id: '52',
-      bairro: 'PATRIMONIO',
+      value: 'PATRIMONIO',
     },
     {
       id: '53',
-      bairro: 'PEQUIS',
+      value: 'PEQUIS',
     },
     {
       id: '54',
-      bairro: 'PLANALTO',
+      value: 'PLANALTO',
     },
     {
       id: '55',
-      bairro: 'PORTAL DO VALE',
+      value: 'PORTAL DO VALE',
     },
     {
       id: '56',
-      bairro: 'PRESIDENTE ROOSEVELT',
+      value: 'PRESIDENTE ROOSEVELT',
     },
     {
       id: '57',
-      bairro: 'RESIDENCIAL GRAMADO',
+      value: 'RESIDENCIAL GRAMADO',
     },
     {
       id: '58',
-      bairro: 'RESIDENCIAL INTEGRACAO',
+      value: 'RESIDENCIAL INTEGRACAO',
     },
     {
       id: '59',
-      bairro: 'SANTA LUZIA',
+      value: 'SANTA LUZIA',
     },
     {
       id: '60',
-      bairro: 'SANTA MONICA',
+      value: 'SANTA MONICA',
     },
     {
       id: '61',
-      bairro: 'SANTA ROSA',
+      value: 'SANTA ROSA',
     },
     {
       id: '62',
-      bairro: 'SAO JORGE',
+      value: 'SAO JORGE',
     },
     {
       id: '63',
-      bairro: 'SAO JOSE',
+      value: 'SAO JOSE',
     },
     {
       id: '64',
-      bairro: 'SARAIVA',
+      value: 'SARAIVA',
     },
     {
       id: '65',
-      bairro: 'SEGISMUNDO PEREIRA',
+      value: 'SEGISMUNDO PEREIRA',
     },
     {
       id: '66',
-      bairro: 'SHOPPING PARK',
+      value: 'SHOPPING PARK',
     },
     {
       id: '67',
-      bairro: 'TABAJARAS',
+      value: 'TABAJARAS',
     },
     {
       id: '68',
-      bairro: 'TAIAMAN',
+      value: 'TAIAMAN',
     },
     {
       id: '69',
-      bairro: 'TIBERY',
+      value: 'TIBERY',
     },
     {
       id: '70',
-      bairro: 'TOCANTINS',
+      value: 'TOCANTINS',
     },
     {
       id: '71',
-      bairro: 'TUBALINA',
+      value: 'TUBALINA',
     },
     {
       id: '72',
-      bairro: 'UMUARAMA',
+      value: 'UMUARAMA',
     },
     {
       id: '73',
-      bairro: 'VIGILATO PEREIRA',
+      value: 'VIGILATO PEREIRA',
     },
   ];
 
   parentescoContatoOptions: any[] = [
-    { id: 0, value: 'Pessoal' },
-    { id: 1, value: 'Cônjuge' },
-    { id: 2, value: 'Filho(a)' },
-    { id: 3, value: 'Pai' },
-    { id: 4, value: 'Mãe' },
-    { id: 5, value: 'Irmã(o)' },
-    { id: 6, value: 'Primo(a)' },
-    { id: 7, value: 'Tio(a)' },
-    { id: 8, value: 'Sobrinho(a)' },
-    { id: 9, value: 'Neto(a)' },
-    { id: 10, value: 'Bisneto(a)' },
-    { id: 11, value: 'Vizinho(a)' },
+    { id: 0, value: 'PESSOAL' },
+    { id: 1, value: 'CONJUGE' },
+    { id: 2, value: 'FILHO(A)' },
+    { id: 3, value: 'PAI' },
+    { id: 4, value: 'MAE' },
+    { id: 5, value: 'IRMA(O)' },
+    { id: 6, value: 'PRIMO(A)' },
+    { id: 7, value: 'TIO(A)' },
+    { id: 8, value: 'SOBRINHO(A)' },
+    { id: 9, value: 'NETO(A)' },
+    { id: 10, value: 'BISNETO(A)' },
+    { id: 11, value: 'VIZINHO(A)' },
   ];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private addressService: AddressService
   ) {}
 
   ngOnInit(): void {}
@@ -413,8 +417,8 @@ export class StudentsFormComponent implements OnInit {
     return this.formBuilder.group({
       contato: [''],
       responsavel: [''],
-      parentesco: ['']
-    })
+      parentesco: [''],
+    });
   }
 
   adicionarContato() {
@@ -428,4 +432,42 @@ export class StudentsFormComponent implements OnInit {
   public get width() {
     return window.innerWidth;
   }
+
+  getAddress() {
+    const cep =
+      this.studentForm.get('cep')?.value?.replace(/\D/g, '') || '';
+
+    if(cep) {
+      this.addressService.getAddress(cep).subscribe((address) => {
+        this.populateAddress(address);
+      });
+    }
+
+  }
+
+  populateAddress(address: Address) {
+    this.studentForm.patchValue({
+      endereco: this.formatString(address.logradouro),
+      bairro: this.formatString(address.bairro),
+    });
+  }
+
+  formatString(input: string): string {
+    const accentsMap: { [key: string]: string } = {
+        'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+        'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
+        'ã': 'a', 'ẽ': 'e', 'ĩ': 'i', 'õ': 'o', 'ũ': 'u',
+        'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
+        'ç': 'c',
+        'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
+        'À': 'A', 'È': 'E', 'Ì': 'I', 'Ò': 'O', 'Ù': 'U',
+        'Ã': 'A', 'Ẽ': 'E', 'Ĩ': 'I', 'Õ': 'O', 'Ũ': 'U',
+        'Â': 'A', 'Ê': 'E', 'Î': 'I', 'Ô': 'O', 'Û': 'U',
+        'Ç': 'C'
+    };
+
+    return input.replace(/[^\u0000-\u007E]/g, (char) => {
+        return accentsMap[char] || char;
+    }).toUpperCase();
+}
 }
