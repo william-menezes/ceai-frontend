@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Column } from '../../../core/models/column';
 import { Student } from '../../../core/models/student';
 import { StudentService } from '../../../core/services/student.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-students-list',
@@ -19,15 +19,12 @@ export class StudentsListComponent {
   constructor(
     private studentService: StudentService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    //private messageService: MessageService
   ) {}
 
   ngOnInit() {
-    this.studentService.getStudents().subscribe((students) => {
-      this.students = students;
-
-      this.loading = false;
-    });
+    this.loadStudents();
 
     this.cols = [
       { field: 'nome', header: 'Nome' },
@@ -68,14 +65,19 @@ export class StudentsListComponent {
     }
   }
 
+  loadStudents() {
+    this.studentService.getStudents().subscribe((students) => {
+      this.students = students;
+
+      this.loading = false;
+    });
+  }
+
   newStudent() {
-    this.router.navigate(['novo-aluno'], { relativeTo: this.route });
+    this.router.navigate(['novo'], { relativeTo: this.route });
   }
 
   selectStudent(id: any) {
-    this.studentService.getStudentById(id).subscribe((student) => {
-      //console.log('Service working');
-      console.log(student);
-    });
+    this.router.navigate(['editar', id], { relativeTo: this.route });
   }
 }

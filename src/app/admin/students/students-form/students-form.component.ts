@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressService } from '../../../core/services/address.service';
 import { Address } from '../../../core/models/address';
+import { Student } from '../../../core/models/student';
 
 @Component({
   selector: 'app-students-form',
@@ -14,7 +15,7 @@ export class StudentsFormComponent implements OnInit {
   @ViewChild('form')
   form!: NgForm;
   studentForm = this.formBuilder.group({
-    id: '',
+    id: [''],
     dataMatricula: [''],
     dataRematricula: [''],
     status: [''],
@@ -25,7 +26,6 @@ export class StudentsFormComponent implements OnInit {
     numero: [''],
     bairro: [''],
     complemento: [''],
-    value: [''],
     cep: [''],
     telefone1: [''],
     telefone2: [''],
@@ -63,13 +63,10 @@ export class StudentsFormComponent implements OnInit {
     trabalhosManuais: [''],
     viola: [''],
     violao: [''],
-    copiaRg: [''],
+    copiaRg: '',
     copiaCpf: [''],
     copiaEndereco: [''],
     copiaVacina: [''],
-    //refazer com formArray
-    tipoContato: [''],
-    responsavel: [''],
     contatos: this.formBuilder.array([]),
   });
 
@@ -391,6 +388,7 @@ export class StudentsFormComponent implements OnInit {
     { id: 10, value: 'BISNETO(A)' },
     { id: 11, value: 'VIZINHO(A)' },
   ];
+  header: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -399,7 +397,66 @@ export class StudentsFormComponent implements OnInit {
     private addressService: AddressService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const student: Student = this.route.snapshot.data['student'];
+    this.header = this.route.snapshot.url[0].path;
+
+    this.studentForm.setValue({
+      id: student.id,
+      dataMatricula: student.dataMatricula,
+      dataRematricula: student.dataRematricula,
+      status: student.status,
+      nome: student.nome,
+      sexo: student.sexo,
+      dataNascimento: student.dataNascimento,
+      endereco: student.endereco,
+      numero: student.numero,
+      bairro: student.bairro,
+      complemento: student.complemento,
+      cep: student.cep,
+      telefone1: student.telefone1,
+      telefone2: student.telefone2,
+      telefone3: student.telefone3,
+      telefone4: student.telefone4,
+      rg: student.rg,
+      orgaoExpedidor: student.orgaoExpedidor,
+      dataExpedicao: student.dataExpedicao,
+      cpf: student.cpf,
+      nomeMae: student.nomeMae,
+      naturalidade: student.naturalidade,
+      nis: student.nis,
+      prontuarioSUS: student.prontuarioSUS,
+      validadeAtestado: student.validadeAtestado,
+      liberacaoMedica: student.liberacaoMedica,
+      alfabetizacao: student.alfabetizacao,
+      atividadeFisica: student.atividadeFisica,
+      capoeira: student.capoeira,
+      celular: student.celular,
+      coral: student.coral,
+      dancaSalao: student.dancaSalao,
+      dancaUrbana: student.dancaUrbana,
+      dancaUrbanaMarcelo: student.dancaUrbanaMarcelo,
+      dancaVentre: student.dancaVentre,
+      fanfarra: student.fanfarra,
+      fisioterapia: student.fisioterapia,
+      geb: student.geb,
+      grupoConvivencia: student.grupoConvivencia,
+      hidroginastica: student.hidroginastica,
+      informatica: student.informatica,
+      musculacao: student.musculacao,
+      odontologia: student.odontologia,
+      projetoSol: student.projetoSol,
+      psicologia: student.psicologia,
+      trabalhosManuais: student.trabalhosManuais,
+      viola: student.viola,
+      violao: student.violao,
+      copiaRg: student.copiaRg,
+      copiaCpf: student.copiaCpf,
+      copiaEndereco: student.copiaEndereco,
+      copiaVacina: student.copiaVacina,
+      contatos: [],
+    });
+  }
 
   voltar() {
     this.router.navigate(['./alunos'], { relativeTo: this.route });
@@ -434,15 +491,13 @@ export class StudentsFormComponent implements OnInit {
   }
 
   getAddress() {
-    const cep =
-      this.studentForm.get('cep')?.value?.replace(/\D/g, '') || '';
+    const cep = this.studentForm.get('cep')?.value?.replace(/\D/g, '') || '';
 
-    if(cep) {
+    if (cep) {
       this.addressService.getAddress(cep).subscribe((address) => {
         this.populateAddress(address);
       });
     }
-
   }
 
   populateAddress(address: Address) {
@@ -454,20 +509,54 @@ export class StudentsFormComponent implements OnInit {
 
   formatString(input: string): string {
     const accentsMap: { [key: string]: string } = {
-        'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
-        'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
-        'ã': 'a', 'ẽ': 'e', 'ĩ': 'i', 'õ': 'o', 'ũ': 'u',
-        'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
-        'ç': 'c',
-        'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
-        'À': 'A', 'È': 'E', 'Ì': 'I', 'Ò': 'O', 'Ù': 'U',
-        'Ã': 'A', 'Ẽ': 'E', 'Ĩ': 'I', 'Õ': 'O', 'Ũ': 'U',
-        'Â': 'A', 'Ê': 'E', 'Î': 'I', 'Ô': 'O', 'Û': 'U',
-        'Ç': 'C'
+      á: 'a',
+      é: 'e',
+      í: 'i',
+      ó: 'o',
+      ú: 'u',
+      à: 'a',
+      è: 'e',
+      ì: 'i',
+      ò: 'o',
+      ù: 'u',
+      ã: 'a',
+      ẽ: 'e',
+      ĩ: 'i',
+      õ: 'o',
+      ũ: 'u',
+      â: 'a',
+      ê: 'e',
+      î: 'i',
+      ô: 'o',
+      û: 'u',
+      ç: 'c',
+      Á: 'A',
+      É: 'E',
+      Í: 'I',
+      Ó: 'O',
+      Ú: 'U',
+      À: 'A',
+      È: 'E',
+      Ì: 'I',
+      Ò: 'O',
+      Ù: 'U',
+      Ã: 'A',
+      Ẽ: 'E',
+      Ĩ: 'I',
+      Õ: 'O',
+      Ũ: 'U',
+      Â: 'A',
+      Ê: 'E',
+      Î: 'I',
+      Ô: 'O',
+      Û: 'U',
+      Ç: 'C',
     };
 
-    return input.replace(/[^\u0000-\u007E]/g, (char) => {
+    return input
+      .replace(/[^\u0000-\u007E]/g, (char) => {
         return accentsMap[char] || char;
-    }).toUpperCase();
-}
+      })
+      .toUpperCase();
+  }
 }

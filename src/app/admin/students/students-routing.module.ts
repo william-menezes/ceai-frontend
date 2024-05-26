@@ -2,16 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StudentsFormComponent } from './students-form/students-form.component';
 import { StudentsListComponent } from './students-list/students-list.component';
+import { studentsResolver } from './guards/students.resolver';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'listar-alunos', pathMatch: 'full' },
   { path: '', component: StudentsListComponent },
-  { path: 'novo-aluno', component: StudentsFormComponent },
+  {
+    path: 'novo',
+    component: StudentsFormComponent,
+    resolve: { student: studentsResolver },
+  },
+  {
+    path: 'editar/:id',
+    component: StudentsFormComponent,
+    resolve: { student: studentsResolver },
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
-  /* {
-    path: 'listar-alunos',
-    component: StudentsListComponent,
-  }, */
 ];
 
 @NgModule({
