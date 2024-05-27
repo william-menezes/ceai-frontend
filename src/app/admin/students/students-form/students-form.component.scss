@@ -15,9 +15,13 @@
     .p-calendar, .p-dropdown, .p-inputmask {
       width: 100%;
     }
+
+    .p-dialog-content {
+      min-height: 102px;
+    }
   }
 
-  .teste {
+  .icon {
     cursor: pointer;
   }
 }

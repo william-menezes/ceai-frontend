@@ -104,7 +104,7 @@
             <p-iconField iconPosition="right">
               <p-inputIcon
                 styleClass="pi pi-search"
-                class="teste"
+                class="icon"
                 (click)="showModal()"
               />
 
@@ -113,7 +113,6 @@
                 [modal]="true"
                 [closeOnEscape]="true"
                 [(visible)]="modalVisible"
-
                 draggable="false"
                 [style]="{ width: '50rem' }"
                 [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
@@ -155,6 +154,10 @@
                     selectionMode="single"
                     [(selection)]="selectedAddress"
                     (onRowSelect)="selectAddress($event.data)"
+                    [styleClass]="'p-datatable-sm'"
+                    [scrollable]="true"
+                    scrollHeight="400px"
+                    [tableStyle]="{ 'min-width': '60rem' }"
                   >
                     <ng-template pTemplate="header">
                       <tr>
