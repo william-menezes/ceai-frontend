@@ -17,4 +17,13 @@ export class AddressService {
       tap((address) => console.log(address))
     );
   }
+
+  getByStreet(street: string): Observable<Address[]> {
+    return this.http
+      .get<Address[]>(`${this._baseUrl}/MG/Uberlandia/${street}/json`)
+      .pipe(
+        first(),
+        tap((address) => console.log(address))
+      );
+  }
 }

@@ -1,9 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import {
+  FormControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  NgForm,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressService } from '../../../core/services/address.service';
 import { Address } from '../../../core/models/address';
 import { Student } from '../../../core/models/student';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-students-form',
@@ -389,6 +396,10 @@ export class StudentsFormComponent implements OnInit {
     { id: 11, value: 'VIZINHO(A)' },
   ];
   header: string = '';
+  modalVisible: boolean = false;
+  street = new FormControl('');
+  streetResults$: Observable<Address[]> | null = null;
+  selectedAddress!: Address;
 
   constructor(
     private route: ActivatedRoute,
@@ -558,5 +569,28 @@ export class StudentsFormComponent implements OnInit {
         return accentsMap[char] || char;
       })
       .toUpperCase();
+  }
+
+  showModal() {
+    this.modalVisible = true;
+  }
+
+  closeModal() {
+    this.street.setValue('');
+    this.streetResults$ = null;
+    this.modalVisible = false;
+  }
+
+  searchFullAddress() {
+    const street = this.street.value;
+
+    if (street) {
+      this.streetResults$ = this.addressService.getByStreet(street).pipe();
+      //console.log(this.addressService.getByStreet(street).subscribe());
+    }
+  }
+
+  selectAddress(e: any) {
+    console.log(e);
   }
 }

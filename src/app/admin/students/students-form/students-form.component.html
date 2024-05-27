@@ -7,7 +7,7 @@
       (onClick)="voltar()"
     />
 
-    <h2>{{ header | titlecase}} aluno</h2>
+    <h2>{{ header | titlecase }} aluno</h2>
   </div>
 </p-toolbar>
 
@@ -100,12 +100,96 @@
         <div class="formgrid grid row-gap-5">
           <div class="col-12 md:col-2 form-field">
             <label for="cep">CEP</label>
-            <p-inputMask
+
+            <p-iconField iconPosition="right">
+              <p-inputIcon
+                styleClass="pi pi-search"
+                class="teste"
+                (click)="showModal()"
+              />
+
+              <p-dialog
+                header="Header"
+                [modal]="true"
+                [(visible)]="modalVisible"
+                closable="false"
+                draggable="false"
+                [style]="{ width: '25rem' }"
+              >
+                <ng-template pTemplate="header">
+                  <span class="font-bold white-space-nowrap">
+                    Pesquisar CEP
+                  </span>
+                </ng-template>
+
+                <div class="form-field">
+                  <label for="street">Rua</label>
+                  <input
+                    pInputText
+                    id="street"
+                    [formControl]="street"
+                    autocomplete="off"
+                    oninput="this.value = this.value.toUpperCase()"
+                  />
+                </div>
+
+                <ng-template pTemplate="footer">
+                  <div class="flex justify-content-end mb-5">
+                    <p-button
+                      label="Cancelar"
+                      severity="secondary"
+                      (click)="closeModal()"
+                    />
+                    <p-button label="Pesquisar" (click)="searchFullAddress()" />
+                  </div>
+
+                  @if (streetResults$ | async; as results) {
+                  <p-table
+                    #table
+                    [value]="results"
+                    dataKey="cep"
+                    [paginator]="true"
+                    [rows]="5"
+                    selectionMode="single"
+                    [(selection)]="selectedAddress"
+                    (onRowSelect)="selectAddress($event)"
+                  >
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>CEP</th>
+                        <th>Logradouro</th>
+                        <th>Complemento</th>
+                        <th>Bairro</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-results>
+                      <tr [pSelectableRow]="selectedAddress">
+                        <td>{{ results.cep }}</td>
+                        <td>{{ results.logradouro }}</td>
+                        <td>{{ results.complemento }}</td>
+                        <td>{{ results.bairro }}</td>
+                      </tr>
+                    </ng-template>
+                    </p-table
+                  >
+                  }
+                </ng-template>
+              </p-dialog>
+
+              <p-inputMask
+                formControlName="cep"
+                mask="99999-999"
+                maxlength="9"
+                (focusout)="getAddress()"
+              />
+            </p-iconField>
+
+            <!-- <p-inputMask
               formControlName="cep"
               mask="99999-999"
               maxlength="9"
               (focusout)="getAddress()"
-            />
+            /> -->
           </div>
 
           <div class="col-12 md:col-8 form-field">
@@ -161,68 +245,66 @@
             *ngFor="let contato of contatos().controls; let contatoId = index"
             [formGroupName]="contatoId"
           >
+            <div class="formgrid grid row-gap-5">
+              <div class="col-12 md:col-3 form-field">
+                <label for="contato">Telefone {{ contatoId + 1 }}</label>
+                <p-inputMask
+                  formControlName="contato"
+                  mask="(99) ?9 9999-9999"
+                  maxlength="16"
+                />
+              </div>
 
-          <div class="formgrid grid row-gap-5" >
-            <div class="col-12 md:col-3 form-field">
-              <label for="contato">Telefone {{contatoId+1}}</label>
-              <p-inputMask
-                formControlName="contato"
-                mask="(99) ?9 9999-9999"
-                maxlength="16"
-              />
+              <div class="col-12 md:col-5 form-field">
+                <label for="responsavel">Responsável</label>
+                <input
+                  pInputText
+                  id="responsavel"
+                  formControlName="responsavel"
+                  oninput="this.value = this.value.toUpperCase()"
+                />
+              </div>
+
+              <div class="col-12 md:col-3 form-field">
+                <label for="parentesco">Parentesco</label>
+                <p-dropdown
+                  formControlName="parentesco"
+                  [options]="parentescoContatoOptions"
+                  optionLabel="value"
+                  optionValue="id"
+                />
+              </div>
+
+              <div class="col-12 md:col-1 flex align-items-end">
+                @if (width > 768) {
+                <p-button
+                  icon="pi pi-trash"
+                  [rounded]="true"
+                  [text]="true"
+                  severity="danger"
+                  (click)="removerContato(contatoId)"
+                />
+                } @else {
+                <p-button
+                  icon="pi pi-trash"
+                  [outlined]="true"
+                  severity="danger"
+                  label="Remover contato"
+                  (click)="removerContato(contatoId)"
+                />
+                }
+              </div>
             </div>
+          </ng-container>
 
-            <div class="col-12 md:col-5 form-field">
-              <label for="responsavel">Responsável</label>
-              <input
-                pInputText
-                id="responsavel"
-                formControlName="responsavel"
-                oninput="this.value = this.value.toUpperCase()"
-              />
-            </div>
-
-            <div class="col-12 md:col-3 form-field">
-              <label for="parentesco">Parentesco</label>
-              <p-dropdown
-                formControlName="parentesco"
-                [options]="parentescoContatoOptions"
-                optionLabel="value"
-                optionValue="id"
-              />
-            </div>
-
-            <div class="col-12 md:col-1 flex align-items-end">
-              @if (width > 768) {
-              <p-button
-                icon="pi pi-trash"
-                [rounded]="true"
-                [text]="true"
-                severity="danger"
-                (click)="removerContato(contatoId)"
-              />
-              } @else {
-              <p-button
-                icon="pi pi-trash"
-                [outlined]="true"
-                severity="danger"
-                label="Remover contato"
-                (click)="removerContato(contatoId)"
-              />
-              }
-            </div>
-
-          </div>
-        </ng-container>
-
-        <p-button
-        icon="pi pi-plus"
-        [outlined]="true"
-        severity="secondary"
-        size="small"
-        label="Adicionar contato"
-        (click)="adicionarContato()"
-      />
+          <p-button
+            icon="pi pi-plus"
+            [outlined]="true"
+            severity="secondary"
+            size="small"
+            label="Adicionar contato"
+            (click)="adicionarContato()"
+          />
         </form>
       </p-tabPanel>
 
