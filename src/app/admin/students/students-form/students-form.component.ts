@@ -513,6 +513,7 @@ export class StudentsFormComponent implements OnInit {
 
   populateAddress(address: Address) {
     this.studentForm.patchValue({
+      cep: this.formatString(address.cep),
       endereco: this.formatString(address.logradouro),
       bairro: this.formatString(address.bairro),
     });
@@ -590,7 +591,8 @@ export class StudentsFormComponent implements OnInit {
     }
   }
 
-  selectAddress(e: any) {
-    console.log(e);
+  selectAddress(address: Address) {
+    this.populateAddress(address);
+    this.closeModal();
   }
 }
