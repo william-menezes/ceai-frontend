@@ -1,3 +1,4 @@
+import { StudentService } from './../../../core/services/student.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormControl,
@@ -13,6 +14,7 @@ import { Student } from '../../../core/models/student';
 import { Observable } from 'rxjs';
 import { District } from '../../../core/models/district';
 import { Kinship } from '../../../core/models/kinship';
+import { Contact } from '../../../core/models/contact';
 
 @Component({
   selector: 'app-students-form',
@@ -97,15 +99,23 @@ export class StudentsFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private studentService: StudentService
   ) {}
 
   ngOnInit(): void {
     const student: Student = this.route.snapshot.data['student'];
+
     this.header = this.route.snapshot.url[0].path;
+
     this.addressService
       .getDistricts()
       .subscribe((districts) => (this.bairrosOptions = districts));
+
+    this.studentService
+      .getKinship()
+      .subscribe((kinship) => (this.parentescoContatoOptions = kinship));
+
     this.studentForm.setValue({
       id: student.id,
       dataMatricula: student.dataMatricula,

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Column } from '../../../core/models/column';
-import { Student } from '../../../core/models/student';
+import { Student } from './../../../core/models/student';
+
 import { StudentService } from '../../../core/services/student.service';
 
 @Component({
@@ -16,14 +17,18 @@ export class StudentsListComponent {
   statuses!: any[];
   loading: boolean = true;
 
+  //apagar depois
+  //contacts!: Contatc[];
+  //studentsFormated!: any[];
+
   constructor(
     private studentService: StudentService,
     private route: ActivatedRoute,
-    private router: Router,
-    //private messageService: MessageService
+    private router: Router //private messageService: MessageService
   ) {}
 
   ngOnInit() {
+    //this.loadContacts();
     this.loadStudents();
 
     this.cols = [
@@ -69,9 +74,30 @@ export class StudentsListComponent {
     this.studentService.getStudents().subscribe((students) => {
       this.students = students;
 
+      //carrega os contatos e insere no array contatos em alunos
+      /* this.studentsFormated = this.students.map((s) => {
+        if (!s.contatos) {
+          s.contatos = [];
+        }
+        for (let c of this.contacts) {
+          if (s.id === c.id) {
+            s.contatos.push(c);
+          }
+        }
+        console.log(s);
+      }); */
+
+
       this.loading = false;
     });
+
   }
+
+  /* loadContacts() {
+    this.studentService.getContacts().subscribe((contacts) => {
+      this.contacts = contacts;
+    });
+  } */
 
   newStudent() {
     this.router.navigate(['novo'], { relativeTo: this.route });
