@@ -106,6 +106,12 @@ export class StudentsFormComponent implements OnInit {
   ngOnInit(): void {
     const student: Student = this.route.snapshot.data['student'];
 
+    console.log(student);
+
+    student.contatos?.forEach(() => {
+      this.adicionarContato();
+    });
+
     this.header = this.route.snapshot.url[0].path;
 
     this.addressService
@@ -116,61 +122,7 @@ export class StudentsFormComponent implements OnInit {
       .getKinship()
       .subscribe((kinship) => (this.parentescoContatoOptions = kinship));
 
-    this.studentForm.setValue({
-      id: student.id,
-      dataMatricula: student.dataMatricula,
-      dataRematricula: student.dataRematricula,
-      status: student.status,
-      nome: student.nome,
-      sexo: student.sexo,
-      dataNascimento: student.dataNascimento,
-      endereco: student.endereco,
-      numero: student.numero,
-      bairro: student.bairro,
-      complemento: student.complemento,
-      cep: student.cep,
-      telefone1: student.telefone1,
-      telefone2: student.telefone2,
-      telefone3: student.telefone3,
-      telefone4: student.telefone4,
-      rg: student.rg,
-      orgaoExpedidor: student.orgaoExpedidor,
-      dataExpedicao: student.dataExpedicao,
-      cpf: student.cpf,
-      nomeMae: student.nomeMae,
-      naturalidade: student.naturalidade,
-      nis: student.nis,
-      prontuarioSUS: student.prontuarioSUS,
-      validadeAtestado: student.validadeAtestado,
-      liberacaoMedica: student.liberacaoMedica,
-      alfabetizacao: student.alfabetizacao,
-      atividadeFisica: student.atividadeFisica,
-      capoeira: student.capoeira,
-      celular: student.celular,
-      coral: student.coral,
-      dancaSalao: student.dancaSalao,
-      dancaUrbana: student.dancaUrbana,
-      dancaUrbanaMarcelo: student.dancaUrbanaMarcelo,
-      dancaVentre: student.dancaVentre,
-      fanfarra: student.fanfarra,
-      fisioterapia: student.fisioterapia,
-      geb: student.geb,
-      grupoConvivencia: student.grupoConvivencia,
-      hidroginastica: student.hidroginastica,
-      informatica: student.informatica,
-      musculacao: student.musculacao,
-      odontologia: student.odontologia,
-      projetoSol: student.projetoSol,
-      psicologia: student.psicologia,
-      trabalhosManuais: student.trabalhosManuais,
-      viola: student.viola,
-      violao: student.violao,
-      copiaRg: student.copiaRg,
-      copiaCpf: student.copiaCpf,
-      copiaEndereco: student.copiaEndereco,
-      copiaVacina: student.copiaVacina,
-      contatos: [],
-    });
+    this.studentForm.patchValue(student);
   }
 
   voltar() {

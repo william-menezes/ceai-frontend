@@ -1,7 +1,7 @@
 import { Contact } from "./contact";
 
 export interface Student {
-  id: string; //number
+  id: string;
   dataMatricula: string;
   dataRematricula: string;
   status: string;
