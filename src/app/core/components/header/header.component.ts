@@ -27,10 +27,15 @@ export class HeaderComponent implements OnInit {
     this.theme = !theme;
 
     if (this.theme) {
+      this.themeService.switchTheme('aura-light-blue');
+    } else {
+      this.themeService.switchTheme('aura-dark-blue');
+    }
+    /* if (this.theme) {
       this.themeService.switchTheme('lara-light-blue');
     } else {
       this.themeService.switchTheme('lara-dark-blue');
-    }
+    } */
   }
 
   toggleSidebar() {

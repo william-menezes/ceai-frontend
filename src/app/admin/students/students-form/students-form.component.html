@@ -3,7 +3,8 @@
     <p-button
       label="Voltar"
       icon="pi pi-arrow-left"
-      [text]="true"
+
+      [link]="true"
       (onClick)="voltar()"
     />
 
@@ -42,6 +43,7 @@
               formControlName="dataNascimento"
               [iconDisplay]="'input'"
               [showIcon]="true"
+              appendTo="body"
             />
           </div>
 
@@ -69,6 +71,7 @@
               formControlName="dataExpedicao"
               [iconDisplay]="'input'"
               [showIcon]="true"
+              appendTo="body"
             />
           </div>
 
@@ -113,6 +116,7 @@
                 (click)="showModal()"
               />
 
+              <!-- Search CEP dialog -->
               <p-dialog
                 header="Header"
                 [modal]="true"
@@ -190,21 +194,15 @@
                   }
                 </ng-template>
               </p-dialog>
+              <!-- Search CEP dialog -->
 
               <p-inputMask
                 formControlName="cep"
                 mask="99999-999"
                 maxlength="9"
                 (focusout)="getAddress()"
-              />
+                />
             </p-iconField>
-
-            <!-- <p-inputMask
-              formControlName="cep"
-              mask="99999-999"
-              maxlength="9"
-              (focusout)="getAddress()"
-            /> -->
           </div>
 
           <div class="col-12 md:col-8 form-field">

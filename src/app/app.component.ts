@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     contains: 'Contém',
     dateAfter: 'Data depois de',
     dateBefore: 'Data antes de',
-    dateFormat: 'dd/mm/y',
+    dateFormat: 'dd/mm/yy',
     dateIs: 'Data é',
     dateIsNot: 'Data não é',
     dayNames: [
