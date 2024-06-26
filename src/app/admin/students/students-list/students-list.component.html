@@ -13,7 +13,7 @@
 </p-toolbar>
 
 <p-panel [toggleable]="false">
- <!--  <ng-template pTemplate="header">
+  <!--  <ng-template pTemplate="header">
     <div class="flex justify-content-between align-items-center w-100">
       <h2>Alunos</h2>
       <p-button
@@ -36,7 +36,7 @@
     [(selection)]="selectedStudent"
     (onRowSelect)="selectStudent($event.data.id)"
     [paginator]="true"
-    [tableStyle]="{ 'min-width': '110rem' }"
+    [tableStyle]="{ 'min-width': '90rem' }"
     class="w-100"
     sortMode="multiple"
     [multiSortMeta]="[
@@ -68,10 +68,11 @@
         <th pSortableColumn="sexo">Sexo</th>
         <th pSortableColumn="dataNascimento">Data de nascimento</th>
         <th pSortableColumn="status">Status</th>
-        <th pSortableColumn="rg">RG</th>
+        <!-- <th pSortableColumn="rg">RG</th> -->
         <th pSortableColumn="cpf">CPF</th>
         <th pSortableColumn="nomeMae">Mãe</th>
-        <th pSortableColumn="naturalidade">Naturalidade</th>
+        <!-- <th pSortableColumn="naturalidade">Naturalidade</th> -->
+        <th style="width: 10%"></th>
       </tr>
     </ng-template>
 
@@ -90,12 +91,29 @@
             [severity]="getSeverity(student.status)"
           ></p-tag>
         </td>
-        <td><span class="p-column-title">RG</span>{{ student.rg }}</td>
+        <!-- <td><span class="p-column-title">RG</span>{{ student.rg }}</td> -->
         <td><span class="p-column-title">CPF</span>{{ student.cpf }}</td>
         <td><span class="p-column-title">Mãe</span>{{ student.nomeMae }}</td>
-        <td>
+        <!-- <td>
           <span class="p-column-title">Naturalidade</span
           >{{ student.naturalidade }}
+        </td> -->
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-text"
+          ></button>
+
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-text"
+          ></button>
         </td>
       </tr>
     </ng-template>
