@@ -1,10 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
+import { SidebarModule } from 'primeng/sidebar';
 import { ThemeService } from '../../services/theme.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
+  standalone: true,
+  imports: [AvatarModule, SidebarModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
@@ -19,8 +23,12 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.items = [
       { label: 'Dashboard', icon: 'pi pi-home', routerLink: './dashboard' },
-      { label: 'Alunos', icon: 'pi pi-users', routerLink: './alunos'},
-      { label: 'Funcionários', icon: 'pi pi-user', routerLink: './funcionarios' },
+      { label: 'Alunos', icon: 'pi pi-users', routerLink: './alunos' },
+      {
+        label: 'Funcionários',
+        icon: 'pi pi-user',
+        routerLink: './funcionarios',
+      },
       { label: 'Atestados', icon: 'pi pi-file', routerLink: '#' },
       { label: 'Requisições', icon: 'pi pi-file', routerLink: '#' },
       { label: 'Horários', icon: 'pi pi-clock', routerLink: '#' },

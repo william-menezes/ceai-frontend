@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, first, tap } from 'rxjs';
-import { Student } from '../models/student';
-import { Kinship } from '../models/kinship';
-import { Contact } from '../models/contact';
+import { Student } from '../interfaces/student';
+import { Kinship } from '../interfaces/kinship';
+import { Contact } from '../interfaces/contact';
 
 @Injectable({
   providedIn: 'root',

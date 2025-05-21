@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, first, of, tap } from 'rxjs';
-import { Address } from '../models/address';
-import { District } from '../models/district';
+import { Address } from '../interfaces/address';
+import { District } from '../interfaces/district';
 
 @Injectable({
   providedIn: 'root',

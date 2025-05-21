@@ -1,10 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { ThemeService } from '../../services/theme.service';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports: [AvatarModule, ButtonModule, TieredMenuModule, ToolbarModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -19,7 +25,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.items = [
       { label: 'Configurações', icon: 'pi pi-cog' },
-      { label: 'Sair', icon: 'pi pi-sign-out', command: () => {this.logout()} },
+      {
+        label: 'Sair',
+        icon: 'pi pi-sign-out',
+        command: () => {
+          this.logout();
+        },
+      },
     ];
   }
 

@@ -8,13 +8,13 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "standalone": false
+          "standalone": true
         },
         "@schematics/angular:directive": {
-          "standalone": false
+          "standalone": true
         },
         "@schematics/angular:pipe": {
-          "standalone": false
+          "standalone": true
         }
       },
       "root": "",
@@ -37,28 +37,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/primeflex/primeflex.css",
-              {
-                "input": "src/assets/themes/theme-lara-light-blue.scss",
-                "bundleName": "lara-light-blue",
-                "inject": false
-              },
-              {
-                "input": "src/assets/themes/theme-lara-dark-blue.scss",
-                "bundleName": "lara-dark-blue",
-                "inject": false
-              },
-              {
-                "input": "src/assets/themes/theme-aura-light-blue.scss",
-                "bundleName": "aura-light-blue",
-                "inject": false
-              },
-              {
-                "input": "src/assets/themes/theme-aura-dark-blue.scss",
-                "bundleName": "aura-dark-blue",
-                "inject": false
-              }
+              "src/styles.scss"
             ],
             "scripts": []
           },
