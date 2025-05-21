@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolbarModule } from 'primeng/toolbar';
+import { CardModule } from 'primeng/card';
+import { ChartModule } from 'primeng/chart';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+    selector: 'app-dashboard',
+    standalone: true,
+    imports: [CardModule, ChartModule, ToolbarModule],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
   userBySexData: any;

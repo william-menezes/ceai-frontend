@@ -8,11 +8,11 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [AvatarModule, ButtonModule, TieredMenuModule, ToolbarModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'app-header',
+    standalone: true,
+    imports: [AvatarModule, ButtonModule, TieredMenuModule, ToolbarModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
   theme: boolean = true;

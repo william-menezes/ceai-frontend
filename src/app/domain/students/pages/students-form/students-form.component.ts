@@ -28,26 +28,25 @@ import { AddressService } from '../../../../core/services/address.service';
 import { StudentService } from '../../../../core/services/student.service';
 
 @Component({
-  selector: 'app-students-form',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CalendarModule,
-    DialogModule,
-    IconFieldModule,
-    InputIconModule,
-    PanelModule,
-    ReactiveFormsModule,
-    SelectModule,
-    TableModule,
-    TabViewModule,
-    ToolbarModule,
-    TitleCasePipe,
-    AsyncPipe,
-    UpperCasePipe
-  ],
-  templateUrl: './students-form.component.html',
-  styleUrl: './students-form.component.scss',
+    selector: 'app-students-form',
+    imports: [
+        ButtonModule,
+        CalendarModule,
+        DialogModule,
+        IconFieldModule,
+        InputIconModule,
+        PanelModule,
+        ReactiveFormsModule,
+        SelectModule,
+        TableModule,
+        TabViewModule,
+        ToolbarModule,
+        TitleCasePipe,
+        AsyncPipe,
+        UpperCasePipe
+    ],
+    templateUrl: './students-form.component.html',
+    styleUrl: './students-form.component.scss'
 })
 export class StudentsFormComponent implements OnInit {
   //Necessário para resetar o formulário sem dar erro de validação

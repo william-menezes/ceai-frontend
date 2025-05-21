@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway+Dots&display=swap");
+@import "primeflex/primeflex.scss";
 @import "primeicons/primeicons.css";
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings: normal;
+    font-weight: 400;
+}
 
 body {
   padding: 0;

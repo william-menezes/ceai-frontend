@@ -6,9 +6,10 @@ import { Student } from '../../../../core/interfaces/student';
 import { StudentService } from '../../../../core/services/student.service';
 
 @Component({
-  selector: 'app-students-list',
-  templateUrl: './students-list.component.html',
-  styleUrl: './students-list.component.scss',
+    selector: 'app-students-list',
+    templateUrl: './students-list.component.html',
+    styleUrl: './students-list.component.scss',
+    standalone: false
 })
 export class StudentsListComponent {
   students!: Student[];
